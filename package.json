@@ -9,7 +9,8 @@
     "format": "prettier --write src/**/*.{ts,tsx,css}",
     "format:check": "prettier --check src/**/*.{ts,tsx,css}",
     "lint": "eslint src/**/*.{ts,tsx}",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "react": "^18.0.0",
@@ -24,8 +25,16 @@
     "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.29.4",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.8",
     "prettier": "^2.6.2",
     "typescript": "^4.6.3",
     "vite": "^2.9.5"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "yarn format",
+      "yarn lint:fix"
+    ]
   }
 }
