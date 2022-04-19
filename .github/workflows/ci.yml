@@ -17,10 +17,10 @@ jobs:
           node-version: '16'
           cache: 'yarn'
       - name: Install dependencies
-      - run: yarn intall --frozen-lockfile
+        run: yarn intall --frozen-lockfile
       - name: Format check
-      - run: yarn format:check
+        run: yarn format:check
       - name: Lint check
-      - run: yarn lint
+        run: yarn lint
       - name: Unit test
-      - run: yarn test
+        run: yarn test
