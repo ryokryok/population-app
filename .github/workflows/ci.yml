@@ -23,4 +23,6 @@ jobs:
       - name: Lint check
         run: yarn lint
       - name: Unit test
-        run: yarn test
+        env:
+          VITE_RESAS_API_KEY: ${{secrets.VITE_RESAS_API_KEY}}
+        run: VITE_RESAS_API_KEY=${{ env.VITE_RESAS_API_KEY }} yarn test run
