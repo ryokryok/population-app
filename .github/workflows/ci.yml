@@ -25,4 +25,4 @@ jobs:
       - name: Unit test
         env:
           VITE_RESAS_API_KEY: ${secrets.VITE_RESAS_API_KEY}
-        run: yarn test run
+        run: VITE_RESAS_API_KEY=$'{{ secrets.VITE_RESAS_API_KEY }}' yarn test run
