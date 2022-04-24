@@ -10,7 +10,7 @@ const RequestOptions = {
 
 const BASE_URL = 'https://opendata.resas-portal.go.jp'
 
-type PrefecturesCode = {
+export type PrefecturesCode = {
   message: string | null
   result: { prefCode: number; prefName: string }[]
 }
@@ -31,7 +31,7 @@ export async function fetchPrefecturesCode(): Promise<
   }
 }
 
-type Population = {
+export type Population = {
   message: string | null
   result: {
     boundaryYear: number

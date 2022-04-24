@@ -13,3 +13,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.site-title {
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: #ccc;
+  padding: 0.5rem;
+}
+
+.pref-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  gap: 0.5rem;
+}
+
+.pref-list-item {
+  border: 1px solid #aaa;
+  padding: 0.25rem;
+  font-size: 1rem;
+}

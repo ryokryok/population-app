@@ -1,10 +1,15 @@
+import { PrefecturesList } from './components/Prefectures'
+import { SiteTitle } from './components/Title'
+
 function App() {
   return (
     <>
       <header>
-        <h1>総人口推移</h1>
+        <SiteTitle title="総人口推移" />
       </header>
-      <main></main>
+      <main>
+        <PrefecturesList />
+      </main>
       <footer></footer>
     </>
   )
