@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ChangeEvent, useCallback } from 'react'
 import { PrefecturesCode, fetchPrefecturesCode } from '.'
 
 export function usePrefectures() {
@@ -20,4 +20,19 @@ export function usePrefectures() {
   }, [])
 
   return { pref, loading }
+}
+
+export function useCheckedList() {
+  const [checkedList, setCheckedList] = useState<number[]>([])
+  const handleCheck = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      setCheckedList([...checkedList, Number(event.target.value)])
+    } else {
+      setCheckedList(
+        checkedList.filter((value) => value !== Number(event.target.value))
+      )
+    }
+  }, [])
+
+  return { checkedList, handleCheck }
 }
