@@ -1,5 +1,5 @@
 import { useState, useEffect, ChangeEvent, useCallback } from 'react'
-import { PrefecturesCode, fetchPrefecturesCode } from '.'
+import { PrefecturesCode, fetchPrefecturesCode } from './client'
 
 export function usePrefectures() {
   const [pref, setPref] = useState<PrefecturesCode | null>(null)

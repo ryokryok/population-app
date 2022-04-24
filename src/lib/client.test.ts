@@ -1,5 +1,5 @@
-import { fetchPopulation, fetchPrefecturesCode } from './index'
 import { expect, it } from 'vitest'
+import { fetchPrefecturesCode, fetchPopulation } from './client'
 
 const firstPref = {
   prefCode: 1,
