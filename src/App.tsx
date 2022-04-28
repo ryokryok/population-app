@@ -1,5 +1,6 @@
 import { PrefecturesList } from './components/Prefectures'
 import { SiteTitle } from './components/Title'
+import { Chart } from './components/Chart'
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       </header>
       <main>
         <PrefecturesList />
+        <Chart data={[]} />
       </main>
       <footer></footer>
     </>
