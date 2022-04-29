@@ -1,26 +1,21 @@
 import { ChangeEvent, memo } from 'react'
-import { useCheckedList, usePrefectures } from '../lib/hooks'
+import { PrefecturesCode } from '../lib/client'
 
-export function PrefecturesList() {
-  const { prefectures, loading } = usePrefectures()
-  const { handleCheck } = useCheckedList()
+type PrefecturesListProps = {
+  prefectures: PrefecturesCode[] | null
+  itemHadnler: (event: ChangeEvent<HTMLInputElement>) => void
+}
+
+export function PrefecturesList({
+  prefectures,
+  itemHadnler,
+}: PrefecturesListProps) {
   return (
-    <fieldset>
-      <legend>都道府県</legend>
-      {loading ? (
-        <div>loading...</div>
-      ) : (
-        <div className="pref-list-container">
-          {prefectures?.map((pref) => (
-            <PrefectureItem
-              key={pref.prefCode}
-              pref={pref}
-              handler={handleCheck}
-            />
-          ))}
-        </div>
-      )}
-    </fieldset>
+    <div className="pref-list-container">
+      {prefectures?.map((pref) => (
+        <PrefectureItem key={pref.prefCode} pref={pref} handler={itemHadnler} />
+      ))}
+    </div>
   )
 }
 
