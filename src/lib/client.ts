@@ -10,13 +10,18 @@ const RequestOptions = {
 
 const BASE_URL = 'https://opendata.resas-portal.go.jp'
 
-export type PrefecturesCode = {
+export type PrefecturesResult = {
   message: string | null
-  result: { prefCode: number; prefName: string }[]
+  result: PrefecturesCode[]
+}
+
+export type PrefecturesCode = {
+  prefCode: number
+  prefName: string
 }
 
 export async function fetchPrefecturesCode(): Promise<
-  PrefecturesCode | undefined
+  PrefecturesResult | undefined
 > {
   try {
     const res = await fetch(`${BASE_URL}/api/v1/prefectures`, {
@@ -31,19 +36,21 @@ export async function fetchPrefecturesCode(): Promise<
   }
 }
 
-export type Population = {
+export type PopulationResult = {
   message: string | null
   result: {
     boundaryYear: number
     data: {
-      label: string
-      data: {
-        year: number
-        value: number
-        rate?: number
-      }[]
+      label: '総人口' | '年少人口' | '生産年齢人口' | '老年人口'
+      data: PopulationData[]
     }[]
   }
+}
+
+export type PopulationData = {
+  year: number
+  value: number
+  rate?: number
 }
 
 type PopulationParam = {
@@ -54,7 +61,7 @@ type PopulationParam = {
 
 export async function fetchPopulation(
   param: PopulationParam
-): Promise<Population | undefined> {
+): Promise<PopulationResult | undefined> {
   const { prefCode, cityCode, addArea } = param
   try {
     const res = await fetch(

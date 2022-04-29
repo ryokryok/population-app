@@ -2,14 +2,14 @@ import { useState, useEffect, ChangeEvent, useCallback } from 'react'
 import { PrefecturesCode, fetchPrefecturesCode } from './client'
 
 export function usePrefectures() {
-  const [pref, setPref] = useState<PrefecturesCode | null>(null)
+  const [prefectures, setPrefectures] = useState<PrefecturesCode[] | null>(null)
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     fetchPrefecturesCode()
       .then((res) => {
         if (res !== undefined) {
-          console.log(res)
-          setPref(res)
+          console.log(res.result)
+          setPrefectures(res.result)
           setLoading(false)
         }
       })
@@ -19,7 +19,7 @@ export function usePrefectures() {
       })
   }, [])
 
-  return { pref, loading }
+  return { prefectures, loading }
 }
 
 export function useCheckedList() {

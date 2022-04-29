@@ -2,7 +2,7 @@ import { ChangeEvent, memo } from 'react'
 import { useCheckedList, usePrefectures } from '../lib/hooks'
 
 export function PrefecturesList() {
-  const { pref, loading } = usePrefectures()
+  const { prefectures, loading } = usePrefectures()
   const { handleCheck } = useCheckedList()
   return (
     <fieldset>
@@ -11,7 +11,7 @@ export function PrefecturesList() {
         <div>loading...</div>
       ) : (
         <div className="pref-list-container">
-          {pref?.result?.map((pref) => (
+          {prefectures?.map((pref) => (
             <PrefectureItem
               key={pref.prefCode}
               pref={pref}
