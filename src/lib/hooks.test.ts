@@ -1,6 +1,6 @@
 import { test, describe } from 'vitest'
 import { renderHook, act } from '@testing-library/react-hooks'
-import { useCheckedList, usePrefectures } from './hooks'
+import { useCheckedList, usePrefectures, useTotalPopulation } from './hooks'
 import { PREFECTURES_CODE } from './constants'
 import { ChangeEvent } from 'react'
 
@@ -14,6 +14,26 @@ describe('usePrefectures', () => {
 
     expect(result.current.loading).toBe(false)
     expect(result.current.prefectures).toEqual(PREFECTURES_CODE)
+  })
+})
+
+describe('useTotalPopulation', () => {
+  test('should fetch population', async () => {
+    const TOKYO_PREF_CODE = 13
+    const { result, waitForNextUpdate } = renderHook(() =>
+      useTotalPopulation(TOKYO_PREF_CODE)
+    )
+    expect(result.current.loading).toBe(true)
+    expect(result.current.population).toBe(null)
+
+    await waitForNextUpdate({ timeout: 2000 })
+
+    expect(result.current.loading).toBe(false)
+
+    const tokyoPopulation = result.current.population
+    // population data is available from 1960 to 2045.
+    expect(tokyoPopulation?.some((p) => p.year === 1960) === true).toBe(true)
+    expect(tokyoPopulation?.some((p) => p.year === 2045) === true).toBe(true)
   })
 })
 

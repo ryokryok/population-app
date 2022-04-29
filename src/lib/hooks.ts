@@ -1,5 +1,10 @@
 import { useState, useEffect, ChangeEvent, useCallback } from 'react'
-import { PrefecturesCode, fetchPrefecturesCode } from './client'
+import {
+  PrefecturesCode,
+  fetchPrefecturesCode,
+  fetchPopulation,
+  PopulationData,
+} from './client'
 
 export function usePrefectures() {
   const [prefectures, setPrefectures] = useState<PrefecturesCode[] | null>(null)
@@ -19,6 +24,34 @@ export function usePrefectures() {
   }, [])
 
   return { prefectures, loading }
+}
+
+export function useTotalPopulation(prefCode: number) {
+  const [population, setPopulation] = useState<PopulationData[] | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchPopulation({ prefCode, cityCode: '-', addArea: '' })
+      .then((res) => {
+        if (res !== undefined) {
+          const totalPopulationData = res.result.data.find(
+            (d) => d.label === '総人口'
+          )
+          if (totalPopulationData !== undefined) {
+            setPopulation(totalPopulationData.data)
+            setLoading(false)
+          } else {
+            new Error('nothing data')
+          }
+        }
+      })
+      .catch((err) => {
+        setLoading(false)
+        console.log(err)
+      })
+  }, [])
+
+  return { population, loading }
 }
 
 export function useCheckedList() {
