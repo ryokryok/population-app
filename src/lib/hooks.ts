@@ -8,7 +8,6 @@ export function usePrefectures() {
     fetchPrefecturesCode()
       .then((res) => {
         if (res !== undefined) {
-          console.log(res.result)
           setPrefectures(res.result)
           setLoading(false)
         }
