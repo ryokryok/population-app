@@ -1,4 +1,4 @@
-import { test, describe } from 'vitest'
+import { test, describe, expect } from 'vitest'
 import { renderHook, act } from '@testing-library/react-hooks'
 import { useCheckedList, usePrefectures, useTotalPopulation } from './hooks'
 import { PREFECTURES_CODE } from './constants'

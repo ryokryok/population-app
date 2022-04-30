@@ -1,4 +1,4 @@
-import { test, describe } from 'vitest'
+import { test, describe, expect } from 'vitest'
 import { render } from '@testing-library/react'
 import { PrefectureItem, PrefecturesList } from './Prefectures'
 import { PrefecturesCode } from '../lib/client'
