@@ -5,7 +5,7 @@ import { useCheckedList, usePrefectures } from './lib/hooks'
 
 function App() {
   const { prefectures, loading } = usePrefectures()
-  const { checkedList, handleCheck } = useCheckedList()
+  const { checked, handleCheck } = useCheckedList()
   return (
     <>
       <header>
@@ -23,8 +23,7 @@ function App() {
             />
           )}
         </fieldset>
-
-        <Chart data={[]} />
+        <Chart code={checked} />
       </main>
       <footer></footer>
     </>

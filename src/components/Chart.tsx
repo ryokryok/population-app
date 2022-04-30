@@ -7,18 +7,20 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
+import { useTotalPopulation } from '../lib/hooks'
 
 type ChartProps = {
-  data: { value: number; year: number }[]
+  code: number
 }
 
-export function Chart({ data }: ChartProps) {
+export function Chart({ code }: ChartProps) {
+  const { population } = useTotalPopulation(code)
   return (
     <ResponsiveContainer width="100%" height={400}>
       <LineChart
         width={600}
         height={400}
-        data={data}
+        data={population ?? []}
         margin={{
           top: 30,
           right: 30,

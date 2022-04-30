@@ -33,23 +33,21 @@ export function useTotalPopulation(prefCode: number) {
   useEffect(() => {
     fetchPopulation({ prefCode, cityCode: '-', addArea: '' })
       .then((res) => {
-        if (res !== undefined) {
-          const totalPopulationData = res.result.data.find(
-            (d) => d.label === '総人口'
-          )
-          if (totalPopulationData !== undefined) {
-            setPopulation(totalPopulationData.data)
-            setLoading(false)
-          } else {
-            new Error('nothing data')
-          }
+        const totalPopulationData = res?.result.data.find(
+          (d) => d.label === '総人口'
+        )
+        if (totalPopulationData !== undefined) {
+          setPopulation(totalPopulationData.data)
+          setLoading(false)
+        } else {
+          new Error('nothing data')
         }
       })
       .catch((err) => {
         setLoading(false)
         console.log(err)
       })
-  }, [])
+  }, [prefCode])
 
   return { population, loading }
 }
