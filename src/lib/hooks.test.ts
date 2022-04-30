@@ -40,9 +40,9 @@ describe('useTotalPopulation', () => {
 describe('useCheckList', () => {
   test('shoud check or not', () => {
     const { result } = renderHook(useCheckedList)
-    expect(result.current.checkedList).toEqual([])
+    expect(result.current.checked).toEqual(0)
 
-    const mockAddEvent = {
+    const mockEvent1 = {
       target: {
         checked: true,
         value: '1',
@@ -50,22 +50,21 @@ describe('useCheckList', () => {
     } as ChangeEvent<HTMLInputElement>
 
     act(() => {
-      result.current.handleCheck(mockAddEvent)
+      result.current.handleCheck(mockEvent1)
     })
 
-    expect(result.current.checkedList).toEqual([1])
+    expect(result.current.checked).toEqual(1)
 
-    const mockRemoveEvent = {
+    const mockEvent2 = {
       target: {
-        checked: false,
-        value: '1',
+        value: '2',
       },
     } as ChangeEvent<HTMLInputElement>
 
     act(() => {
-      result.current.handleCheck(mockRemoveEvent)
+      result.current.handleCheck(mockEvent2)
     })
 
-    expect(result.current.checkedList).toEqual([])
+    expect(result.current.checked).toEqual(2)
   })
 })

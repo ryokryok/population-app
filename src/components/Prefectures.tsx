@@ -35,7 +35,8 @@ export const PrefectureItem = memo(function PrefectureComponent({
   return (
     <div className="pref-list-item">
       <input
-        type={'checkbox'}
+        type={'radio'}
+        name={'perfecture'}
         id={prefName}
         value={prefCode}
         onChange={handler}

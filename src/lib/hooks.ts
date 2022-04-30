@@ -54,17 +54,11 @@ export function useTotalPopulation(prefCode: number) {
   return { population, loading }
 }
 
-export function useCheckedList() {
-  const [checkedList, setCheckedList] = useState<number[]>([])
+export function useCheckedList(prefCode = 0) {
+  const [checked, setChecked] = useState<number>(prefCode)
   const handleCheck = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      setCheckedList([...checkedList, Number(event.target.value)])
-    } else {
-      setCheckedList(
-        checkedList.filter((value) => value !== Number(event.target.value))
-      )
-    }
+    setChecked(Number(event.target.value))
   }, [])
 
-  return { checkedList, handleCheck }
+  return { checked, handleCheck }
 }
