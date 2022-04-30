@@ -12,8 +12,8 @@ function App() {
         <SiteTitle title="総人口推移" />
       </header>
       <main className="main-container">
-        <fieldset>
-          <legend>都道府県</legend>
+        <fieldset className="pref-list">
+          <legend className="pref-list-label">都道府県</legend>
           {loading ? (
             <div>loading...</div>
           ) : (

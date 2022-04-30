@@ -41,7 +41,9 @@ export const PrefectureItem = memo(function PrefectureComponent({
         value={prefCode}
         onChange={handler}
       />
-      <label htmlFor={prefName}>{prefName}</label>
+      <label htmlFor={prefName} className="pref-list-item-label">
+        {prefName}
+      </label>
     </div>
   )
 })
