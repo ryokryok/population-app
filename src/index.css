@@ -40,13 +40,13 @@ code {
 
 .pref-list-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
   gap: 0.5rem;
 }
 
 .pref-list-item {
   border: 1px solid #aaa;
-  padding: 0.25rem;
+  padding: 0.25rem 0.5rem;
   font-size: 1rem;
 }
 
