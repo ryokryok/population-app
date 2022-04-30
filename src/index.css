@@ -14,11 +14,15 @@ code {
     monospace;
 }
 
+.main-container {
+  padding: 1rem;
+}
+
 .site-title {
   font-size: 2rem;
   font-weight: bold;
   background-color: #ccc;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
 }
 
 .pref-list-container {
