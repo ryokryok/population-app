@@ -1,23 +1,26 @@
-const defaultHeaders = {
+const BASE_URL = 'https://opendata.resas-portal.go.jp'
+
+const defaultHeaders: { [name: string]: string } = {
   'Content-Type': 'application/json',
   'X-API-KEY': import.meta.env.VITE_RESAS_API_KEY,
 }
 
 const RequestOptions = {
   method: 'GET',
-  headers: new Headers(defaultHeaders),
+  headers: defaultHeaders,
 }
 
-const BASE_URL = 'https://opendata.resas-portal.go.jp'
-
-type PrefecturesCode = {
+export type PrefecturesResult = {
   message: string | null
-  result: { prefCode: number; prefName: string }[]
+  result: PrefecturesCode[]
 }
 
-export async function fetchPrefecturesCode(): Promise<
-  PrefecturesCode | undefined
-> {
+export type PrefecturesCode = {
+  prefCode: number
+  prefName: string
+}
+
+export async function fetchPrefecturesCode(): Promise<PrefecturesResult | null> {
   try {
     const res = await fetch(`${BASE_URL}/api/v1/prefectures`, {
       ...RequestOptions,
@@ -27,23 +30,28 @@ export async function fetchPrefecturesCode(): Promise<
     }
     throw new Error(res.statusText)
   } catch (error) {
-    console.error(error)
+    if (import.meta.env.DEV) {
+      console.error(error)
+    }
+    return null
   }
 }
 
-type Population = {
+export type PopulationResult = {
   message: string | null
   result: {
     boundaryYear: number
     data: {
-      label: string
-      data: {
-        year: number
-        value: number
-        rate?: number
-      }[]
+      label: '総人口' | '年少人口' | '生産年齢人口' | '老年人口'
+      data: PopulationData[]
     }[]
   }
+}
+
+export type PopulationData = {
+  year: number
+  value: number
+  rate?: number
 }
 
 type PopulationParam = {
@@ -54,7 +62,7 @@ type PopulationParam = {
 
 export async function fetchPopulation(
   param: PopulationParam
-): Promise<Population | undefined> {
+): Promise<PopulationResult | null> {
   const { prefCode, cityCode, addArea } = param
   try {
     const res = await fetch(
@@ -70,6 +78,9 @@ export async function fetchPopulation(
     }
     throw new Error(res.statusText)
   } catch (error) {
-    console.error(error)
+    if (import.meta.env.DEV) {
+      console.error(error)
+    }
+    return null
   }
 }

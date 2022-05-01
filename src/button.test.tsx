@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { test, describe } from 'vitest'
+import { test, describe, expect } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 
 type ButtonProps = {

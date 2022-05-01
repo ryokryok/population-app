@@ -1,5 +1,10 @@
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +15,42 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.main-container {
+  padding: 1rem;
+}
+
+.site-title {
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: #ccc;
+  padding: 0.5rem 1rem;
+}
+
+.pref-list {
+  padding: 0.5rem;
+}
+
+.pref-list-label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0 0.5rem;
+}
+
+.pref-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+  gap: 0.5rem;
+}
+
+.pref-list-item {
+  border: 1px solid #aaa;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+}
+
+.pref-list-item-label {
+  font-size: 1rem;
+  padding: 0.25rem;
 }
