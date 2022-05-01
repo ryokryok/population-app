@@ -4,11 +4,13 @@ import { PrefecturesCode } from '../lib/client'
 type PrefecturesListProps = {
   prefectures: PrefecturesCode[] | null
   itemHadnler: (event: ChangeEvent<HTMLInputElement>) => void
+  itemChecked: number
 }
 
 export function PrefecturesList({
   prefectures,
   itemHadnler,
+  itemChecked,
 }: PrefecturesListProps) {
   return (
     <div className="pref-list-container">
@@ -18,6 +20,7 @@ export function PrefecturesList({
             key={pref.prefCode}
             pref={pref}
             handler={itemHadnler}
+            checkedValue={itemChecked}
           />
         ))
       ) : (
@@ -33,11 +36,13 @@ type PrefectureItemProps = {
     prefCode: number
   }
   handler: (e: ChangeEvent<HTMLInputElement>) => void
+  checkedValue: number
 }
 
 export const PrefectureItem = memo(function PrefectureComponent({
   pref,
   handler,
+  checkedValue,
 }: PrefectureItemProps) {
   const { prefName, prefCode } = pref
   return (
@@ -48,6 +53,7 @@ export const PrefectureItem = memo(function PrefectureComponent({
         id={prefName}
         value={prefCode}
         onChange={handler}
+        defaultChecked={prefCode === checkedValue}
       />
       <label htmlFor={prefName} className="pref-list-item-label">
         {prefName}

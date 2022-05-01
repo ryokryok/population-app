@@ -4,8 +4,9 @@ import { Chart } from './components/Chart'
 import { useCheckedList, usePrefectures } from './lib/hooks'
 
 function App() {
+  const TOKYO_PERF_CODE = 13
   const { prefectures, loading } = usePrefectures()
-  const { checked, handleCheck } = useCheckedList()
+  const { checked, handleCheck } = useCheckedList(TOKYO_PERF_CODE)
   return (
     <>
       <header>
@@ -20,6 +21,7 @@ function App() {
             <PrefecturesList
               prefectures={prefectures}
               itemHadnler={handleCheck}
+              itemChecked={checked}
             />
           )}
         </fieldset>

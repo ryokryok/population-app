@@ -15,7 +15,11 @@ const mockHandler = () => {}
 describe('Prefecture Components', () => {
   test('Prefectures List', () => {
     const { container } = render(
-      <PrefecturesList prefectures={mockPrefecture} itemHadnler={mockHandler} />
+      <PrefecturesList
+        prefectures={mockPrefecture}
+        itemHadnler={mockHandler}
+        itemChecked={2}
+      />
     )
     const targetComponent = container.querySelector('div')
     expect(targetComponent).toBeInTheDocument()
@@ -34,7 +38,11 @@ describe('Prefecture Components', () => {
   })
   test('Null Prefectures List', () => {
     const { container } = render(
-      <PrefecturesList prefectures={null} itemHadnler={mockHandler} />
+      <PrefecturesList
+        prefectures={null}
+        itemHadnler={mockHandler}
+        itemChecked={2}
+      />
     )
     const targetComponent = container.querySelector('div')
     expect(targetComponent).toBeInTheDocument()
@@ -46,7 +54,11 @@ describe('Prefecture Components', () => {
       prefCode: 13,
     }
     const { container } = render(
-      <PrefectureItem pref={tokyoPref} handler={mockHandler} />
+      <PrefectureItem
+        pref={tokyoPref}
+        handler={mockHandler}
+        checkedValue={tokyoPref.prefCode}
+      />
     )
     const targetComponent = container.querySelector('.pref-list-item')
     expect(targetComponent).not.toBeNull()
@@ -58,5 +70,6 @@ describe('Prefecture Components', () => {
     expect(inputTag?.name).toBe('perfecture')
     expect(inputTag?.type).toBe('radio')
     expect(inputTag?.value).toBe(tokyoPref.prefCode.toString())
+    expect(inputTag?.checked).toBe(true)
   })
 })
