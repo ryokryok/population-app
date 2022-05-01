@@ -12,14 +12,16 @@ export function usePrefectures() {
   useEffect(() => {
     fetchPrefecturesCode()
       .then((res) => {
-        if (res !== undefined) {
+        if (res !== null) {
           setPrefectures(res.result)
           setLoading(false)
         }
       })
       .catch((err) => {
+        if (import.meta.env.DEV) {
+          console.error(err)
+        }
         setLoading(false)
-        console.log(err)
       })
   }, [])
 
@@ -44,8 +46,10 @@ export function useTotalPopulation(prefCode: number) {
         }
       })
       .catch((err) => {
+        if (import.meta.env.DEV) {
+          console.error(err)
+        }
         setLoading(false)
-        console.log(err)
       })
   }, [prefCode])
 

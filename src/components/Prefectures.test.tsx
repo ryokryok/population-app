@@ -38,7 +38,7 @@ describe('Prefecture Components', () => {
     )
     const targetComponent = container.querySelector('div')
     expect(targetComponent).toBeInTheDocument()
-    expect(targetComponent?.hasChildNodes()).toBe(false)
+    expect(targetComponent?.querySelectorAll('input').length).toBe(0)
   })
   test('PrefectureItem', () => {
     const tokyoPref = {

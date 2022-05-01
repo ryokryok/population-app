@@ -12,9 +12,17 @@ export function PrefecturesList({
 }: PrefecturesListProps) {
   return (
     <div className="pref-list-container">
-      {prefectures?.map((pref) => (
-        <PrefectureItem key={pref.prefCode} pref={pref} handler={itemHadnler} />
-      ))}
+      {prefectures ? (
+        prefectures.map((pref) => (
+          <PrefectureItem
+            key={pref.prefCode}
+            pref={pref}
+            handler={itemHadnler}
+          />
+        ))
+      ) : (
+        <div>データ取得エラーです。ブラウザを再度リロードしてください。</div>
+      )}
     </div>
   )
 }
